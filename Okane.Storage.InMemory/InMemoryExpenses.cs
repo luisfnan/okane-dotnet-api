@@ -24,5 +24,8 @@ public class InMemoryExpensesRepository : IExpensesRepository
     public IEnumerable<Expense> ByCategory(string category) => 
         _expenses.Where(expense => expense.Category == category);
 
+    public Expense? FilterByCategory(string category) =>
+        _expenses.FirstOrDefault(expense => expense.Category == category);
+
     public Expense? ById(int id) => _expenses.FirstOrDefault(expense => expense.Id == id);
 }

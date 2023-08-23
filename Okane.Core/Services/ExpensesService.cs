@@ -25,6 +25,7 @@ public class ExpensesService : IExpensesService
     }
 
     public IEnumerable<ExpenseResponse> Retrieve(string? category = null)
+
     {
         var result = category == null ? _expenses.All() : _expenses.ByCategory(category);
 
@@ -32,15 +33,28 @@ public class ExpensesService : IExpensesService
             .Select(CreateResponse);
     }
 
+    public ExpenseResponse? RetrieveByCategory(string category)
+    {
+        var result = _expenses.FilterByCategory(category);
+        if (result == null)
+            return null;
+
+        return CreateResponse(result);
+    }
+
+
+
+
     public ExpenseResponse? ById(int id)
     {
         var expense = _expenses.ById(id);
 
         if (expense == null)
             return null;
-        
+
         return CreateResponse(expense);
     }
+
 
     private static ExpenseResponse CreateResponse(Expense expense) =>
         new()
