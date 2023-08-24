@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Okane.Storage.EntityFramework;
 
@@ -10,9 +11,11 @@ using Okane.Storage.EntityFramework;
 namespace Okane.Storage.EntityFramework.Migrations
 {
     [DbContext(typeof(OkaneDbContext))]
-    partial class OkaneDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230824234554_migration2")]
+    partial class migration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
